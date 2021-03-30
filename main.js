@@ -25,6 +25,10 @@ app.use(
 
 app.use(express.json());
 
+app.use(methodOverride("_method", {
+    methods: ["POST", "GET", ]
+}));
+
 // routes 
 app.get("/courses", homeController.showCourses);
 // app.get("/contact", homeController.showSignUp);
