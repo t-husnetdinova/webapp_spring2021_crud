@@ -3,6 +3,7 @@ layouts = require("express-ejs-layouts"), mongoose = require("mongoose");
 homeController = require("./controllers/homeController");
 errorController = require("./controllers/errorController");
 subscribersController = require("./controllers/subscribersController");
+methodOverride = require("method-override");
 
 mongoose.connect("mongodb://localhost:27017/confetti_cuisine", 
 {useNewUrlParser: true});
