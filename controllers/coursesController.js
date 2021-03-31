@@ -62,7 +62,7 @@ module.exports = {
         let courseId = req.params.id;
         Course.findById(courseId)
             .then(course => {
-                res.render("/courses/eit", { course: course });
+                res.render("/courses/index", { course: course });
             })
             .catch(error => {
                 console.log(`Error loading course by ID: ${error.message}`);

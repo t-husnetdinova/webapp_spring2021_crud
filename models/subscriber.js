@@ -1,3 +1,5 @@
+Course = require("./course")
+
 const mongoose = require("mongoose"),
     subscriberSchema = mongoose.Schema({
         name: {

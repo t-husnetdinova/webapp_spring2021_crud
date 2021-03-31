@@ -65,7 +65,7 @@ module.exports = {
         let userId = req.params.id;
         User.findById(userId)
             .then(user => {
-                res.render("/users/eit", { user: user });
+                res.render("/users/index", { user: user });
             })
             .catch(error => {
                 console.log(`Error loading user by ID: ${error.message}`);

@@ -61,7 +61,7 @@ module.exports = {
         let subscriberId = req.params.id;
         Subscriber.findById(subscriberId)
             .then(subscriber => {
-                res.render("/subscribers/eit", { subscriber: subscriber });
+                res.render("/subscribers/index", { subscriber: subscriber });
             })
             .catch(error => {
                 console.log(`Error loading subscriber by ID: ${error.message}`);
