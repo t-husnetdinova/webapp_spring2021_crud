@@ -13,7 +13,8 @@ const express = require("express"),
 
 mongoose.connect(
     "mongodb://localhost:27017/confetti_cuisine", 
-{useNewUrlParser: true}
+{ useNewUrlParser: true },
+{ useUnifiedTopology: true }
 );
 
 app.set("view engine", "ejs");

@@ -15,10 +15,10 @@ module.exports = {
             })
     },
     indexView: (req, res) => {
-        res.render("/courses/index");
+        res.render("courses/index");
     },
     new: (req, res) => {
-        res.render("/courses/new");
+        res.render("courses/new");
     },
     create: (req, res, next) => {
         let newCourse = new Course({
@@ -56,13 +56,13 @@ module.exports = {
             })
     },
     showView: (req, res) => {
-        res.render("/courses/show")
+        res.render("courses/show")
     },
     edit: (req, res, next) => {
         let courseId = req.params.id;
         Course.findById(courseId)
             .then(course => {
-                res.render("/courses/index", { course: course });
+                res.render("courses/index", { course: course });
             })
             .catch(error => {
                 console.log(`Error loading course by ID: ${error.message}`);

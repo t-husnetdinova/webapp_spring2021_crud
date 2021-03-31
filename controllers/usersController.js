@@ -15,10 +15,10 @@ module.exports = {
             })
     },
     indexView: (req, res) => {
-        res.render("/users/index");
+        res.render("users/index");
     },
     new: (req, res) => {
-        res.render("/users/new");
+        res.render("users/new");
     },
     create: (req, res, next) => {
         let newUser = new User({
@@ -59,13 +59,13 @@ module.exports = {
             })
     },
     showView: (req, res) => {
-        res.render("/users/show")
+        res.render("users/show")
     },
     edit: (req, res, next) => {
         let userId = req.params.id;
         User.findById(userId)
             .then(user => {
-                res.render("/users/index", { user: user });
+                res.render("users/index", { user: user });
             })
             .catch(error => {
                 console.log(`Error loading user by ID: ${error.message}`);

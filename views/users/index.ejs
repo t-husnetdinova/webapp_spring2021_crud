@@ -1,4 +1,11 @@
 <h2 class="center">User Table</h2>
+
+<a href="/users/new">
+    <span class="button">
+        Create new
+    </span>
+</a>
+
 <table class="table">
     <thread>
         <tr>
@@ -12,7 +19,7 @@
         <% users.forEach(user => { %>
             <tr>
                 <td>
-                    <a href="<%= `/users/$user._id` %>">
+                    <a href="<%= `/users/${user._id}` %>">
                         <%= user.name %>
                     </a>
                 </td>
@@ -28,7 +35,7 @@
                     </a>
                 </td>
                 <td>
-                    <a href="<%= `/users/${user._id}delete?_method=DELETE` %>" onClick="return confirm('Are you sure?')">
+                    <a href="<%= `/users/${user._id}/delete?_method=DELETE` %>" onClick="return confirm('Are you sure?')">
                         Delete
                     </a>
                 </td>

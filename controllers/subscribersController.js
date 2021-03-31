@@ -15,10 +15,10 @@ module.exports = {
             })
     },
     indexView: (req, res) => {
-        res.render("/subscribers/index");
+        res.render("subscribers/index");
     },
     new: (req, res) => {
-        res.render("/subscribers/new");
+        res.render("subscribers/new");
     },
     create: (req, res, next) => {
         let newSubscriber = new Subscriber({
@@ -55,13 +55,13 @@ module.exports = {
             })
     },
     showView: (req, res) => {
-        res.render("/subscribers/show")
+        res.render("subscribers/show")
     },
     edit: (req, res, next) => {
         let subscriberId = req.params.id;
         Subscriber.findById(subscriberId)
             .then(subscriber => {
-                res.render("/subscribers/index", { subscriber: subscriber });
+                res.render("subscribers/index", { subscriber: subscriber });
             })
             .catch(error => {
                 console.log(`Error loading subscriber by ID: ${error.message}`);

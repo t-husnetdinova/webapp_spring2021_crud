@@ -30,11 +30,11 @@ module.exports = {
 
 // exports.showSignUp = (req, res) => {
 //     res.render("contact")
-// }
+//  }
 
 // exports.postedSignUpForm = (req, res) => {
-//     res.render("thanks")
-// }
+//      res.render("thanks")
+//  }
 
 // exports.showIndex = (req, res) => {
 //     res.render("index")
