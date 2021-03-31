@@ -1,45 +1,82 @@
-const express = require("express"), app = express();
-layouts = require("express-ejs-layouts"), mongoose = require("mongoose");
-homeController = require("./controllers/homeController");
-errorController = require("./controllers/errorController");
-subscribersController = require("./controllers/subscribersController");
-methodOverride = require("method-override");
+const express = require("express"), app = express(),
+    app = express(),
+    router = express.Router(),
+    layouts = require("express-ejs-layouts"), mongoose = require("mongoose"),
+    homeController = require("./controllers/homeController"),
+    errorController = require("./controllers/errorController"),
+    subscribersController = require("./controllers/subscribersController"),
+    usersController = require("./controllers/usersController"),
+    coursesController = require("./controllers/coursesController"),
+    methodOverride = require("method-override");
 
-mongoose.connect("mongodb://localhost:27017/confetti_cuisine", 
-{useNewUrlParser: true});
 
-app.set("port", process.env.PORT || 3000);
+mongoose.connect(
+    "mongodb://localhost:27017/confetti_cuisine", 
+{useNewUrlParser: true}
+);
 
 app.set("view engine", "ejs");
-app.use(layouts);
-
-app.get("/", homeController.showIndex);
-
-app.use(express.static("public"));
-
+app.set("port", process.env.PORT || 3000);
 app.use(
     express.urlencoded({
         extended: false
     })
 );
 
-app.use(express.json());
-
-app.use(methodOverride("_method", {
+router.use(express.json());
+router.use(layouts);
+router.use(express.static("public"));
+router.use(methodOverride("_method", {
     methods: ["POST", "GET", ]
 }));
 
-// routes 
-app.get("/courses", homeController.showCourses);
+router.get("/", homeController.index);
+
+// subscriber routes
+router.get("subscribers", subscribersController.index, subscribersController.indexView);
+router.get("subscribers/new", subscribersController.new);
+router.get("subscribers/create", subscribersController.getSubscriptionPage.create, subscribersController.redirectView);
+router.get("subscribers/:id", subscribersController.show, subscribersController.showView);
+router.get("subscribers/:id/edit", subscribersController.edit);
+router.put("subscribers/:id/update", subscribersController.update, subscribersController.redirectView);
+router.delete("subscribers/:id/delete", subscribersController.delete, subscribersController.redirectView);
+
+// user routes
+router.get("users", usersController.index, usersController.indexView);
+router.get("users/new", usersController.new);
+router.get("users/create", usersController.getSubscriptionPage.create, usersController.redirectView);
+router.get("users/:id", usersController.show, usersController.showView);
+router.get("users/:id/edit", usersController.edit);
+router.put("users/:id/update", usersController.update, usersController.redirectView);
+router.delete("users/:id/delete", usersController.delete, usersController.redirectView);
+
+// course routes
+router.get("courses", coursesController.index, coursesController.indexView);
+router.get("courses/new", coursesController.new);
+router.get("courses/create", coursesController.getSubscriptionPage.create, coursesController.redirectView);
+router.get("courses/:id", coursesController.show, coursesController.showView);
+router.get("courses/:id/edit", coursesController.edit);
+router.put("courses/:id/update", coursesController.update, coursesController.redirectView);
+router.delete("courses/:id/delete", coursesController.delete, coursesController.redirectView);
+
+// app.get("/", homeController.showIndex);
+// app.get("/", (req, res) => {
+//     res.render("index");
+// });
+
+// routes - the old way of doing it  
+// app.get("/courses", homeController.showCourses);
 // app.get("/contact", homeController.showSignUp);
 // app.post("/contact", homeController.postedSignUpForm);
-app.get("/subscribers", subscribersController.getAllSubscribers);
-app.get("/contact", subscribersController.getSubscriptionPage);
-app.post("/subscribe", subscribersController.saveSubscriber);
+// app.get("/subscribers", subscribersController.getAllSubscribers);
+// app.get("/contact", subscribersController.getSubscriptionPage);
+// app.post("/subscribe", subscribersController.saveSubscriber);
 
 // error handling
-app.use(errorController.pageNotFoundError);
-app.use(errorController.internalServerError);
+router.use(errorController.pageNotFoundError);
+router.use(errorController.internalServerError);
+
+app.use("/", router);
 
 app.listen(app.get("port"), () => {
     console.log(`Server is running on port: ${app.get("port")}`)

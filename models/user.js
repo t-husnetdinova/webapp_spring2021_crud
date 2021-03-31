@@ -35,11 +35,11 @@ userSchema = new Schema(
     }
 )
 
-userSchema.virtual("fullName").get(function {
+userSchema.virtual("fullName").get(function () {
     return `${this.name.first} ${this.name.last}`
 });
 
-userSchema.pre("save", function {
+userSchema.pre("save", function () {
     let user = this;
     if(user.subscribedAccount == undefined) {
         Subscriber.findOne({
