@@ -31,7 +31,7 @@ module.exports = {
         user.create(newUser)
             .then(user => {
                 res.locals.user = user;
-                res.locals.redirect = "/users";
+                res.locals.redirect = "users";
                 next();
             })
             .catch(error => {
@@ -82,7 +82,7 @@ module.exports = {
         User.findByIdAndUpdate(userId, updatedUser)
         .then(user => {
             res.locals.user = user;
-            res.locals.redirect = `/users/${user._id}`;
+            res.locals.redirect = `users/${user._id}`;
             next();
         })
         .catch(error => {
@@ -94,7 +94,7 @@ module.exports = {
         let userId = req.params.id;
         User.findByIdAndRemove(userId)
         .then(() => {
-            res.locals.redirect = "/users";
+            res.locals.redirect = "users";
             next();
         })
         .catch(error => {

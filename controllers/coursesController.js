@@ -30,7 +30,7 @@ module.exports = {
         course.create(newCourse)
             .then(course => {
                 res.locals.course = course;
-                res.locals.redirect = "/courses";
+                res.locals.redirect = "courses";
                 next();
             })
             .catch(error => {
@@ -80,7 +80,7 @@ module.exports = {
         Course.findByIdAndUpdate(courseId, updatedCourse)
         .then(course => {
             res.locals.course = course;
-            res.locals.redirect = `/courses/${course._id}`;
+            res.locals.redirect = `courses/${course._id}`;
             next();
         })
         .catch(error => {
@@ -92,7 +92,7 @@ module.exports = {
         let courseId = req.params.id;
         Course.findByIdAndRemove(courseId)
         .then(() => {
-            res.locals.redirect = "/courses";
+            res.locals.redirect = "courses";
             next();
         })
         .catch(error => {
