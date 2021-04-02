@@ -2,7 +2,11 @@ Course = require("./course")
 
 const mongoose = require("mongoose"),
     subscriberSchema = mongoose.Schema({
-        name: {
+        firstName: {
+            type: String,
+            required: true
+        },
+        lastName: {
             type: String,
             required: true
         },
@@ -17,6 +21,10 @@ const mongoose = require("mongoose"),
             min: [10000, "Zip code must be 5 digits"],
             max: 9999
         },
+        password: {
+            type: String,
+            required: true
+        },
         courses: [{type: mongoose.Schema.Types.ObjectId, ref: Course}]
     },
     {
@@ -25,7 +33,7 @@ const mongoose = require("mongoose"),
     );
 
 subscriberSchema.methods.getInfo = function () {
-    return `Name: ${this.name} Email: ${this.email} Zipcode: ${this.zipCode}`;
+    return `First Name: ${this.firstName} Last Name: ${this.lastName}  Email: ${this.email} Zipcode: ${this.zipCode}`;
 }
 
 module.exports = mongoose.model("Subscriber", subscriberSchema);
