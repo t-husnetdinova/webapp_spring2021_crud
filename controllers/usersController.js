@@ -22,10 +22,8 @@ module.exports = {
     },
     create: (req, res, next) => {
         let newUser = new User({
-            name: {
-                first: req.body.first,
-                last: req.body.last
-            },
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
             email: req.body.email,
             zipCode: req.body.zipCode,
             password: req.body.password
@@ -75,10 +73,8 @@ module.exports = {
     update: (req, res, next) => {
         let userId = req.params.id;
         let updatedUser = new User ({
-            name: {
-                first: req.body.first,
-                last: req.body.last
-            },
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
             email: req.body.email,
             zipCode: req.body.zipCode,
             password: req.body.password

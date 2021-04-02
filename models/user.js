@@ -38,7 +38,7 @@ userSchema = new Schema(
 )
 
 userSchema.virtual("fullName").get(function () {
-    return `${this.name.first} ${this.name.last}`
+    return `${this.firstName} ${this.lastName}`
 });
 
 userSchema.pre("save", function () {

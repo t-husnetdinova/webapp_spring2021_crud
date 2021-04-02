@@ -22,9 +22,11 @@ module.exports = {
     },
     create: (req, res, next) => {
         let newSubscriber = new Subscriber({
-            name: req.body.name,
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
             email: req.body.email,
-            zipCode: req.body.zipCode
+            zipCode: req.body.zipCode,
+            password: req.body.password
         });
         subscriber.create(newSubscriber)
             .then(subscriber => {
@@ -71,9 +73,11 @@ module.exports = {
     update: (req, res, next) => {
         let subscriberId = req.params.id;
         let updatedSubscriber = new Subscriber ({
-            name: req.body.name,
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
             email: req.body.email,
-            zipCode: req.body.zipCode
+            zipCode: req.body.zipCode,
+            password: req.body.password
         });
         Subscriber.findByIdAndUpdate(subscriberId, updatedSubscriber)
         .then(subscriber => {
