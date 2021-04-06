@@ -28,10 +28,10 @@ module.exports = {
             zipCode: req.body.zipCode,
             password: req.body.password
         });
-        user.create(newUser)
+        User.create(newUser)
             .then(user => {
                 res.locals.user = user;
-                res.locals.redirect = "users";
+                res.locals.redirect = "/users";
                 next();
             })
             .catch(error => {
@@ -94,7 +94,7 @@ module.exports = {
         let userId = req.params.id;
         User.findByIdAndRemove(userId)
         .then(() => {
-            res.locals.redirect = "users";
+            res.locals.redirect = "/users";
             next();
         })
         .catch(error => {

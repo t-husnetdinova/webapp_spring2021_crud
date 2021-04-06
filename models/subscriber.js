@@ -19,7 +19,7 @@ const mongoose = require("mongoose"),
         zipCode: {
             type: Number,
             min: [10000, "Zip code must be 5 digits"],
-            max: 9999
+            max: 99999
         },
         password: {
             type: String,

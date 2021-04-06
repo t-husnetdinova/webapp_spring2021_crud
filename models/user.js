@@ -21,7 +21,7 @@ userSchema = new Schema(
         zipCode: {
             type: Number,
             min: [10000, "Zip code must be 5 digits"],
-            max: 9999
+            max: 99999
         },
         password: {
             type: String,
@@ -39,7 +39,7 @@ userSchema.virtual("fullName").get(function () {
     return `${this.firstName} ${this.lastName}`
 });
 
-userSchema.pre("save", function () {
+userSchema.pre("save", function (next) {
     let user = this;
     if(user.subscribedAccount == undefined) {
         Subscriber.findOne({

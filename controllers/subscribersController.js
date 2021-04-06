@@ -10,7 +10,7 @@ module.exports = {
                 next();
             })
             .catch(error => {
-                console.log(`Error fetching subscrber data: ${error.message} `);
+                console.log(`Error fetching subscriber data: ${error.message} `);
                 next(error);
             })
     },
@@ -28,10 +28,10 @@ module.exports = {
             zipCode: req.body.zipCode,
             password: req.body.password
         });
-        subscriber.create(newSubscriber)
+        Subscriber.create(newSubscriber)
             .then(subscriber => {
                 res.locals.subscriber = subscriber;
-                res.locals.redirect = "subscribers";
+                res.locals.redirect = "/subscribers";
                 next();
             })
             .catch(error => {
@@ -82,7 +82,7 @@ module.exports = {
         Subscriber.findByIdAndUpdate(subscriberId, updatedSubscriber)
         .then(subscriber => {
             res.locals.subscriber = subscriber;
-            res.locals.redirect = `subscribers/${subscriber._id}`;
+            res.locals.redirect = `/subscribers/${subscriber._id}`;
             next();
         })
         .catch(error => {
@@ -94,7 +94,7 @@ module.exports = {
         let subscriberId = req.params.id;
         Subscriber.findByIdAndRemove(subscriberId)
         .then(() => {
-            res.locals.redirect = "subscribers";
+            res.locals.redirect = "/subscribers";
             next();
         })
         .catch(error => {

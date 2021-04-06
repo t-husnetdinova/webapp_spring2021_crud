@@ -27,10 +27,10 @@ module.exports = {
             maxStudent: req.body.maxStudent,
             cost: req.body.cost
         });
-        course.create(newCourse)
+        Course.create(newCourse)
             .then(course => {
                 res.locals.course = course;
-                res.locals.redirect = "courses";
+                res.locals.redirect = "/courses";
                 next();
             })
             .catch(error => {
@@ -92,7 +92,7 @@ module.exports = {
         let courseId = req.params.id;
         Course.findByIdAndRemove(courseId)
         .then(() => {
-            res.locals.redirect = "courses";
+            res.locals.redirect = "/courses";
             next();
         })
         .catch(error => {
