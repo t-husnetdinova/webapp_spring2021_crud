@@ -11,6 +11,8 @@
         <tr>
             <th>Title</th>
             <th>Description</th>
+            <th>Maximum Students</th>
+            <th>Cost</th>
             <th>Edit</th>
             <th>Delete</th>
         </tr>
@@ -25,6 +27,12 @@
                 </td>
                 <td>
                     <%= course.description %>
+                </td>
+                <td>
+                    <%= course.maxStudent %>
+                </td>
+                <td>
+                    <%= course.cost %>
                 </td>
                 <td>
                     <a href="<%= `/courses/${course._id}/edit` %>">

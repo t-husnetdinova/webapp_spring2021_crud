@@ -72,17 +72,23 @@ module.exports = {
     },
     update: (req, res, next) => {
         let userId = req.params.id;
-        let updatedUser = new User ({
-            firstName: req.body.firstName,
-            lastName: req.body.lastName,
-            email: req.body.email,
-            zipCode: req.body.zipCode,
-            password: req.body.password
-        });
+        // let updatedUser = new User ({
+        //     firstName: req.body.firstName,
+        //     lastName: req.body.lastName,
+        //     email: req.body.email,
+        //     zipCode: req.body.zipCode,
+        //     password: req.body.password
+        // });
+        var updatedUser = {};
+        updatedUser.firstName = req.body.firstName;
+        updatedUser.lastName =  req.body.lastName;
+        updatedUser.email = req.body.email;
+        updatedUser.zipCode = req.body.zipCode;
+        updatedUser.password = req.body.password;
         User.findByIdAndUpdate(userId, updatedUser)
         .then(user => {
             res.locals.user = user;
-            res.locals.redirect = `users/${user._id}`;
+            res.locals.redirect = `/users/${user._id}`;
             next();
         })
         .catch(error => {

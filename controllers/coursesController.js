@@ -71,12 +71,17 @@ module.exports = {
     },
     update: (req, res, next) => {
         let courseId = req.params.id;
-        let updatedCourse = new Course ({
-            title: req.body.title,
-            description: req.body.description,
-            maxStudent: req.body.maxStudent,
-            cost: req.body.cost
-        });
+        // let updatedCourse = new Course ({
+        //     title: req.body.title,
+        //     description: req.body.description,
+        //     maxStudent: req.body.maxStudent,
+        //     cost: req.body.cost
+        // });
+        var updatedCourse = {};
+        updatedCourse.title = req.body.title;
+        updatedCourse.description =  req.body.description;
+        updatedCourse.maxStudent = req.body.maxStudent;
+        updatedCourse.cost = req.body.cost;
         Course.findByIdAndUpdate(courseId, updatedCourse)
         .then(course => {
             res.locals.course = course;

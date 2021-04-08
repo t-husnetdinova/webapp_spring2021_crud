@@ -72,34 +72,40 @@ module.exports = {
     },
     update: (req, res, next) => {
         let subscriberId = req.params.id;
-        let updatedSubscriber = new Subscriber ({
-            firstName: req.body.firstName,
-            lastName: req.body.lastName,
-            email: req.body.email,
-            zipCode: req.body.zipCode,
-            password: req.body.password
-        });
+        // let updatedSubscriber = new Subscriber ({
+        //     firstName: req.body.firstName,
+        //     lastName: req.body.lastName,
+        //     email: req.body.email,
+        //     zipCode: req.body.zipCode,
+        //     password: req.body.password
+        // });
+        var updatedSubscriber = {};
+        updatedSubscriber.firstName = req.body.firstName;
+        updatedSubscriber.lastName =  req.body.lastName;
+        updatedSubscriber.email = req.body.email;
+        updatedSubscriber.zipCode = req.body.zipCode;
+        updatedSubscriber.password = req.body.password;
         Subscriber.findByIdAndUpdate(subscriberId, updatedSubscriber)
-        .then(subscriber => {
-            res.locals.subscriber = subscriber;
-            res.locals.redirect = `/subscribers/${subscriber._id}`;
-            next();
-        })
-        .catch(error => {
-            console.log(`Error loading subscriber by ID: ${error.message}`);
-            next(error);
-        })
-    }, 
+            .then(subscriber => {
+                res.locals.subscriber = subscriber;
+                res.locals.redirect = `/subscribers/${subscriber._id}`;
+                next();
+            })
+            .catch(error => {
+                console.log(`Error loading subscriber by ID: ${error.message}`);
+                next(error);
+            })
+    },
     delete: (req, res, next) => {
         let subscriberId = req.params.id;
         Subscriber.findByIdAndRemove(subscriberId)
-        .then(() => {
-            res.locals.redirect = "/subscribers";
-            next();
-        })
-        .catch(error => {
-            console.log(`Error loading subscriber by ID: ${error.message}`);
-            next(error);
-        })
+            .then(() => {
+                res.locals.redirect = "/subscribers";
+                next();
+            })
+            .catch(error => {
+                console.log(`Error loading subscriber by ID: ${error.message}`);
+                next(error);
+            })
     }
 }
