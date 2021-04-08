@@ -1,21 +1,21 @@
-var courses = [
-    {
-        title: "Strange Buns",
-        cost: "$45"
-    },
-    {
-        title: "Plum Pudding",
-        cost: "$30"
-    },
-    {
-        title: "Dish o' the Sea",
-        cost: "$50"
-    },
-    {
-        title: "Miner's Treat",
-        cost: "$75"
-    }
-]
+// var courses = [
+//     {
+//         title: "Strange Buns",
+//         cost: "$45"
+//     },
+//     {
+//         title: "Plum Pudding",
+//         cost: "$30"
+//     },
+//     {
+//         title: "Dish o' the Sea",
+//         cost: "$50"
+//     },
+//     {
+//         title: "Miner's Treat",
+//         cost: "$75"
+//     }
+// ]
 
 module.exports = {
     index: (req, res) => {

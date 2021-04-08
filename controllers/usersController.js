@@ -85,6 +85,7 @@ module.exports = {
         updatedUser.email = req.body.email;
         updatedUser.zipCode = req.body.zipCode;
         updatedUser.password = req.body.password;
+        
         User.findByIdAndUpdate(userId, updatedUser)
         .then(user => {
             res.locals.user = user;

@@ -85,6 +85,7 @@ module.exports = {
         updatedSubscriber.email = req.body.email;
         updatedSubscriber.zipCode = req.body.zipCode;
         updatedSubscriber.password = req.body.password;
+        
         Subscriber.findByIdAndUpdate(subscriberId, updatedSubscriber)
             .then(subscriber => {
                 res.locals.subscriber = subscriber;
