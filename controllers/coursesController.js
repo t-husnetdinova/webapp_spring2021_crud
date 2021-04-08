@@ -82,11 +82,11 @@ module.exports = {
         updatedCourse.description =  req.body.description;
         updatedCourse.maxStudent = req.body.maxStudent;
         updatedCourse.cost = req.body.cost;
-        
+
         Course.findByIdAndUpdate(courseId, updatedCourse)
         .then(course => {
             res.locals.course = course;
-            res.locals.redirect = `courses/${course._id}`;
+            res.locals.redirect = `/courses/${course._id}`;
             next();
         })
         .catch(error => {
